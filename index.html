@@ -4,9 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
     <title>Drag and drop images</title>
 </head>
 <body>
-    
+    <main>
+        <div class="drag-area">
+            <p>Arraste um arquivo de imagem aqui</p>
+            <p>ou</p>
+            <!-- <input type="file" name="image" id="image_id" accept="image/*"> -->
+            <button onclick="sendFile()">Escolha uma imagem</button>
+            <input type="file" name="image_file" id="" hidden> 
+
+        </div>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
