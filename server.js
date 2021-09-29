@@ -2,6 +2,7 @@ const express= require('express')
 const app = express()
 const path = require('path')
 const multer = require ('./configMulter')
+const PORT = process.env.PORT || 3000
 
 app.use(express.urlencoded({extended:true})) 
 
@@ -26,9 +27,9 @@ app.get('/multifiles',(req,res)=>{
 })
 
 app.post('/',multer.array('image_file'), (req,res)=>{
-    console.log(req.files)
+    // console.log(req.files)
     res.send('OK')
 })
 
 
-app.listen(8080, ()=>{console.log('server up in port'+' 8080')})
+app.listen(PORT, ()=>{console.log('server up in port '+ PORT)})

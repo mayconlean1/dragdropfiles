@@ -17,8 +17,16 @@ body{
 }
 
 a{
-    background-color: aquamarine;
+    border: 1px solid lightgrey;
+    text-decoration: none;
+    color:lightgrey;
+    /* background-color: rgb(94, 87, 138); */
     padding: 1rem;
+    border-radius: 1rem;
+}
+a:hover{
+    border: 1px solid white;
+    color: white;
 }
 
 main{

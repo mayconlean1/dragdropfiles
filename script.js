@@ -1,3 +1,5 @@
+const host = 'http://localhost:3000/'
+
 const dropArea = document.querySelector('.drag-area')
 const textArea = document.querySelectorAll('.drag-area>p')[0]
 const input = document.querySelector('input[name=image_file]')
@@ -8,7 +10,6 @@ let fileUrl
 
 const files = {}
 let currentThumbId = 0
-
 
 function addImage(){   
     const thumbArea = document.querySelector('.thumb-area')
@@ -34,37 +35,48 @@ function addImage(){
 }
 
 function deleteThumb(self){
-    console.log(self.id, '##############')
-    console.log(files, '##############')
+   
     if (confirm('Deseja deletar a imagem?')){
         const id = self.id
         self.parentNode.removeChild(self)
         delete files[id]
-        console.log(files, 'saida')
+       
     }
 }
 
 form.addEventListener('submit',(event)=>{
     event.preventDefault()
     
-    if(file){
-        const formData = new FormData ()
+    const formData = new FormData ()
+    let formDataStatus = false
 
+    if (Object.keys(files).length > 0){
+        for(id in files){
+            const tempfile = files[id]
+            formData.append('image_file', tempfile)
+        }
+        formDataStatus = true
+    }else if(file){
         formData.append('image_file', file)
-
-        fetch('http://localhost:8080/', {
+        formDataStatus = true
+    } 
+    
+    if(formDataStatus){
+        fetch(host, {
         method: 'POST',
         body: formData
         })
         .then(resp => { console.log('status:', resp.status)})
+
     }
+
+ 
 })
 
 function sendFile(){input.click()}
 
 input.addEventListener('change',async (event)=>{
     file =  event.target.files[0]
-    console.log( 'input.addEventListener(change)',file)
     // fileUrl = showImage(file)
     fileUrl = await getUrlImage(file)
     dropArea.innerHTML = `<img src="${fileUrl}" alt="">`
@@ -74,13 +86,13 @@ dropArea.addEventListener('dragover', (event)=>{
     event.preventDefault()
     dropArea.classList.add('active')
     textArea.textContent = 'Solte o arquivo de imagem aqui'
-    // console.log('Arquivo em cima da drop area')
+    
 })
 
 dropArea.addEventListener('dragleave', ()=>{
     dropArea.classList.remove('active')
     textArea.textContent = 'Arraste um arquivo de imagem aqui'    
-    // console.log('Arquivo fora da drop area')
+    
 })
 
 dropArea.addEventListener('drop',async (event)=>{
@@ -100,8 +112,7 @@ function showImage(file){
 
         fileReader.onload = ()=>{
             // fileUrl = fileReader.result
-            
-            // console.log(fileUrl)
+
             dropArea.innerHTML = `<img src="${fileReader.result}" alt="">`
             return fileReader.result
         }
