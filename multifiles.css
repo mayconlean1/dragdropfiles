@@ -1,0 +1,48 @@
+.thumb-area{
+    max-width:30rem;
+    height:10rem;
+    background-color: white;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding:1.5rem;
+    scale: 2;
+
+}
+
+
+.image-field{
+
+    border: 1px solid black;
+    cursor: pointer;
+    /* position: absolute; */
+   
+    /* width:5rem;
+    height:5rem;
+    background-color: yellow; */
+    /* overflow:hidden; */
+}
+/* 
+.img-div{
+    width: 100%;
+    height:100%;
+    overflow:hidden;
+} */
+
+.img-thumb{
+    width:5rem;
+    height:5rem;
+    object-fit: scale-down;
+}
+
+@media screen and (max-width: 550px ) {
+    
+    .thumb-area{
+        max-width:18rem;
+        padding:0;
+    }
+    
+}

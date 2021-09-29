@@ -6,19 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="multifiles.css">
     <title>Drag and drop images</title>
 </head>
 <body>
-    <a href="/multifiles">layout várias imagens</a>
+    <a href="/">layout básico</a>
     <main>
         <div class="drag-area">
             <p>Arraste um arquivo de imagem aqui</p>
             <p>ou</p>
             <!-- <input type="file" name="image" id="image_id" accept="image/*"> -->
             <button onclick="sendFile()">Escolha uma imagem</button>
-
         </div>
+       
     </main>
+    <button onclick=addImage()>Adicionar</button>
+    <div class="thumb-area">
+    
+        
+        
+    </div>
     <form action="/" method="POST">
         <input type="file" name="image_file" id="" hidden> 
         <button type="submit">Enviar</button>
